@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running SonarQube analysis...'
-                    withSonarQubeEnv('SonarQube') { // Replace 'SonarQube' with your SonarQube server name in Jenkins
+                    withSonarQubeEnv('sq1') { // Replace 'SonarQube' with your SonarQube server name in Jenkins
                         sh 'mvn sonar:sonar \
                             -Dsonar.projectKey=jenkins-aws-java-maven-app \
                             -Dsonar.projectName="Jenkins AWS Java Maven App" \
