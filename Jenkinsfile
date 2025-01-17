@@ -41,7 +41,22 @@ pipeline {
                 }
             }
         }
-
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    echo 'Running SonarQube analysis...'
+                    withSonarQubeEnv('SonarQube') { // Replace 'SonarQube' with your SonarQube server name in Jenkins
+                        sh 'mvn sonar:sonar \
+                            -Dsonar.projectKey=jenkins-aws-java-maven-app \
+                            -Dsonar.projectName="Jenkins AWS Java Maven App" \
+                            -Dsonar.projectVersion=${env.IMAGE_NAME} \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.login=${SONAR_AUTH_TOKEN}'
+                    }
+                }
+            }
+        }
+    
         
     }
 }
