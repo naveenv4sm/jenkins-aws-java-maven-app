@@ -41,16 +41,18 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    echo 'Running SonarQube analysis...'
-                    withSonarQubeEnv('sq1') { 
-                        sh 'mvn sonar:sonar
-                    }
-                }
+       steps {
+        script {
+            echo 'Running SonarQube analysis...'
+            withSonarQubeEnv('sq1') { 
+                sh '''
+                    mvn sonar:sonar \
+                        -Dsonar.projectName="Jenkins AWS Java Maven App" \
+                        -Dsonar.projectVersion=${BUILD_NUMBER}
+                '''
             }
         }
+    }
     
         
     }
