@@ -38,6 +38,7 @@ pipeline {
                 script {
                     echo 'building the application...'
                     sh 'mvn clean package'
+                    echo 'Print..'
                     sh 'pwd'
                     sh 'ls -l'
                 }
